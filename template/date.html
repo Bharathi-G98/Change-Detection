@@ -1,0 +1,46 @@
+
+{%extends 'first.html'%}
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="{% static 'css//style.css' %}">
+    <script src="{% static 'js//main.js' %}"></script>
+</head>
+<body>
+
+
+    {%block content%}
+    <div class="header">
+        <p id="header-text">RESULT</p>
+        <a href="{{home}}" class="goto-home1">HOME</a>
+        <!-- <a href="{{upload}}" class="goto-upload">UPLOAD</a> -->
+        <a href="{{upload}}" class="gotoupload">GO TO UPLOAD</a>
+    </div>
+
+    <div class="output-box">
+        <h2>Changes detected</h2>
+        <p> Result: {{data1}} </p>
+        <p>Time Taken : {{data2}}</p>
+        <!-- {{greet}} -->
+
+
+        <!-- <h2>Changes Identified</h2>
+        <!-- {{data2}} -->
+        <!-- {{greet}} -->
+
+
+
+            <img  width="700px" src="{% static 'images/output.jpg' %}" alt="No changes detected">
+        </div>
+
+        <form method="POST" action="{% url 'delete_all'%}">
+            {%csrf_token%}
+            <button type="submit" class="dele_btn1">Delete All</button>
+        </form>
+    {%endblock%}
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+
+{% extends 'first.html'%}
+{%load static%}
+<link type="text/css" rel="stylesheet" href="{% static 'css//style.css' %}">
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+
+{% block content%}
+<div class="header">
+    <p id="header-text">LIST</p>
+    <a href="{{inst}}" class="goto-upload">Go To Upload</a>
+</div>
+    <div class="table-content">
+<table>
+    <thead>
+        <tr>
+
+            <th >Video 1</th>
+            <th >Video 2</th>
+            <th >Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for image in images%}
+        <tr>
+
+            <td>
+                <video class= "video-list" autoplay controls muted>
+                    <source src="{{image.video1.url}}" type="video/mp4">
+
+
+                </video>
+            </td>
+            <td>
+                <video class= "video-list" autoplay controls muted>
+                    <source src="{{image.video2.url}}" type="video/mp4">
+
+
+                </video>
+
+            </td>
+            <td>
+                <form method="POST" action="{% url 'delete_image' image.pk%}">
+                    {%csrf_token%}
+                    <button type="submit" class="delete_btn">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+    <!-- <form>
+        {{ forms }}
+    </form>  -->
+{% endblock%}

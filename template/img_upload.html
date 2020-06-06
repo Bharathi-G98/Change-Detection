@@ -1,0 +1,141 @@
+{% extends 'first.html'%}
+{%load crispy_forms_tags%}
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://kit.fontawesome.com/fb751d627b.js" crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Chonburi' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Lexend Zetta' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Ovo' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=PT Serif' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Jockey One' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link type="text/css" rel="stylesheet" href="{% static 'css//style.css' %}">
+<link type="text/css" rel="stylesheet" href="{% static 'css//all.css' %}">
+<script src="{% static 'js//main.js' %}"></script>
+</head>
+<div id="loader" class="center"></div>
+<body class="upload-page">
+{% block content%}
+
+
+<div class="header">
+    <p id="header-text">UPLOAD</p>
+    <a href="{{home}}" class="goto-home">HOME</a>
+    <a ><form method="POST" action="video_list">
+        {%csrf_token%}
+        <button class="list_link" type="submit">LIST</button>
+    </form>
+</a>
+</div>
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token%}
+        <div class="upload-box-header">
+        <p id="upload_box_text">UPLOAD HERE</p>
+    </div>
+        <div class="v-container">
+
+            <div class="v1-container">
+                <p>Video 1</p>
+                <div class="v1">
+                    {{form.video1}}
+                </div>
+            </div>
+
+            <div class="v2-container">
+                <p>Video 2</p>
+                <div class="v2">
+                    {{form.video2}}
+                </div>
+            </div>
+
+            <button type="submit" class="upload btn">Upload</button>
+
+            <div class="upbar"></div>
+        </div>
+
+
+
+    </form>
+
+</div>
+<div class="video-player">
+<!-- <h1>Video Player</h1> -->
+{% for image in images%}
+<!-- {%if image.cover%}
+            <img src="{{image.cover.url}}" alt="{{image.title}}" style="width:200px">
+        {%endif%} -->
+<!-- {%if image.cover_thumbnail%}
+            <img src="{{image.cover_thumbnail.url }}">
+        {%endif%} -->
+<div class="videos" id="video-pl">
+
+<video autoplay controls muted>
+    <source src="{{image.video1.url}}" type="video/mp4">
+
+
+</video>
+<video  autoplay controls muted>
+    <source src="{{image.video2.url}}" type="video/mp4">
+
+</video>
+<form action="detect" method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+    <div class="detect">
+    <button type="submit" class="detect-btn">Detect</button>
+</div>
+</form>
+
+</div>
+{%endfor%}
+
+</div>
+<br>
+
+
+
+<!-- <div id="loader" class="center"></div> -->
+
+
+<form method="POST" action="{% url 'delete_all'%}">
+    {%csrf_token%}
+    <button type="submit" class="dele_btn">Delete All</button>
+</form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript">
+
+            $(function() {
+
+                var documentEl = $(document),
+                    fadeElem = $('.container');
+
+
+                documentEl.on('scroll', function() {
+                    var currScrollPos = documentEl.scrollTop();
+
+                    fadeElem.each(function() {
+                        var $this = $(this),
+                            elemOffsetTop = $this.offset().top;
+                        if (currScrollPos > elemOffsetTop) $this.css('opacity', 1 - (currScrollPos-elemOffsetTop)/160);
+                        $this.css('height', 100 - (currScrollPos-elemOffsetTop)/3);
+                    });
+                });
+            });
+
+        </script>
+
+</body>
+
+{% endblock%}
+</html>

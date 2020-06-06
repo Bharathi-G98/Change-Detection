@@ -1,0 +1,70 @@
+{%load static%}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Chonburi' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Lexend Zetta' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Ovo' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=PT Serif' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href = "{% static 'css//style.css' %}">
+    <title>Change Detection</title>
+</head>
+    <body class="wc-page">
+        <div class="page">
+        {% block content%}
+        <div class="first-page">
+
+            <h1 class="namaste">{{namaste}}</h1>
+            
+            <h1 class="welcome">{{next}}</h1>
+            <a href="{{inst}}"><button class="button btn_getstarted"><span>Get started</span></button></a>
+
+        </div>
+        <div class="intro">
+            
+            <div id = "intro-bar" class="intro-head">
+                <p >Intro :</p>
+            </div>
+            <p id="intro-p1">Change detection is a process that measures how the attributes of 
+                a particular area have changed between two or more time periods. Change detection 
+                often involves comparing aerial photographs or satellite imagery of the area taken at 
+                different times. Change detection has been widely used to assess shifting cultivation, 
+                deforestation, urban growth, the impact of natural disasters, and country border supervision. </p>
+            <p id="intro-p2">An area of utmost concern in today’s world is the catastrophe perpetuated by climate changes. 
+                A myriad of natural calamities that have caused numerous disasters and destruction to habitats, 
+                properties and most importantly, loss of a large number of lives of beings have resulted from 
+                unpredictable climate changes. Undoubtedly, the prominent solution is to identify a method to monitor and 
+                analyze these events and ultimately formulate predictive measures to keep these undesired, unfathomable 
+                events from occurring in the future.  </p>
+
+    
+
+        </div>        
+        {%endblock%}
+    </div>
+    <script>
+        // When the user scrolls down 50px from the top of the document, resize the header's font size
+        window.onscroll = function() {scrollFunction()};
+        widthvalue=75;
+        color = feda6a;
+        function scrollFunction() {
+          if (document.documentElement.scrollTop>20 && document.documentElement.scrollTop<50) {
+            var val = document.getElementsByClassName("intro-head");
+            for( var i=0;i<val.length;i++){
+                widthvalue= widthvalue+1;
+                if(widthvalue<=98)
+                    val[i].style.width = (widthvalue+"%");
+                    val[i].style.backgroundColor = ("red");
+            }
+         
+         }
+    }
+        </script>
+        
+   
+    
+    </body>
+</html>
