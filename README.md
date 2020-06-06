@@ -1,5 +1,6 @@
 Change detection in an aerial video feed – A guide on installation and execution of the project
 This project utilizes a Siamese CNN to effectively perform change detection action on multi temporal video feeds.
+
 Note: Cuda is necessary to run the siamese CNN model
 1.	Installation Instructions:
     •	If an environment is preferred, run the following command in anaconda prompt:
